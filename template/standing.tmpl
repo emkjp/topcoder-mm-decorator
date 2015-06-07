@@ -1,0 +1,107 @@
+﻿<%
+    def get_coder_static_url(row):
+        return u'http://www.topcoder.com/tc?module=MemberProfile&amp;tab=long&amp;cr={0}'.format(row.coder_id)
+
+    def get_color(row):
+        if row.current_rating is None or row.is_newbie:
+            return u'Black'
+        current_rating = int(row.current_rating)
+        return color(row, current_rating)
+
+    def get_diff_rating_text(row) :
+        val = row.new_rating - row.current_rating
+        if val >= 0 :
+            return u'<span class="up">+{0}</span>'.format(val)
+        return u'<span class="down">{0}</span>'.format(val)
+
+    def get_diff_volatility_text(row) :
+        val = row.new_volatility - row.current_volatility
+        if val >= 0 :
+            return u'<span class="up">+{0}</span>'.format(val)
+        return u'<span class="down">{0}</span>'.format(val)
+
+    def color(row,rating) :
+        if rating < 900 :
+            return u'Gray'
+        if rating < 1200 :
+            return u'Green'
+        if rating < 1500 :
+            return u'Blue'
+        if rating < 2200 :
+            return 'Yellow'
+        return u'Red'
+%>
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<link rel="stylesheet" href="../style/style.css" type="text/css" media="print, projection, screen" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.tablesorter.min.js"></script> 
+	<script type="text/javascript">
+	$(function() { 
+		$(".tablesorter").tablesorter(); 
+	}); 
+	function openwindow(handle) {
+		window.open('graph/' + handle + '.html', 'onewindow', 'width=650,height=450').focus();
+	}
+	</script>
+	<title>${title}</title>
+</head>
+<body>
+
+<div>last updated : ${last_updated}</div>
+
+<h1>${title}</h1>
+
+<div id="standing_link"><a href="${url}">official standing</a></div>
+
+
+<table class="tablesorter">
+	<thead>
+	<tr>
+		<th>rank</th>
+		<th>rated<br/>only</th>
+		<th>handle</th>
+		<th>lang</th>
+		<th>country</th>
+		<th>score</th>
+		<th>rating</th>
+		<th>new rating</th>
+		<th>diff</th>
+		<th>performed<br/>as</th>
+		<th>expected<br/>rank</th>
+		<th>last submission time</th>
+		<th>graph</th>
+	</tr>
+	</thead>
+	<tbody>
+		% for row in rows :
+		<tr>
+			<td>${row.provisional_rank}</td>
+			<td>${row.rank_rated_only}</td>
+			<td><a href='${get_coder_static_url(row)}' class='${get_color(row)}'>${row.coder_handle_name}</a></td>
+			<td>${row.language}</td>
+			<td>${row.country}</td>
+			<td>${row.provisional_score}</td>
+			<td><span class='${color(row, row.current_rating)}'>${row.current_rating}</span></td>
+			<td><span class='${color(row, row.new_rating)}'>${row.new_rating}</span></td>
+			<td>${get_diff_rating_text(row)}</td>
+			<td><span class='${color(row, row.perf_as)}'>${row.perf_as}</span></td>
+			<td>${row.e_rank}</td>
+			<td>${row.last_submission_time}</td>
+			<td><button class="graph" onclick="openwindow('${row.coder_handle_name}')">open</button></td>
+		</tr>
+		% endfor
+	</tbody>
+</table>
+
+<hr />
+
+</body>
+
+</html>

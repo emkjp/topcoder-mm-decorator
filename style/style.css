@@ -1,0 +1,102 @@
+body {
+  background-color : black ;
+  color : #fff ;
+  font-family : arial ;
+}
+
+span.up {
+  color : lightgreen ;
+}
+
+span.down {
+  color : red ;
+}
+
+.tablesorter{
+  border : 1px solid #333;
+  border-callapse : callapse;
+  width : 100%;
+}
+.tablesorter td{
+  background-color : #111;
+}
+
+.tablesorter thead , .tablesorter th{
+  background-color : #666;
+  font-weight : normal ;
+  text-align : center;
+}
+
+.graph{
+  background-color : #030;
+  color : white;
+  text-align : center;
+  width:100%;
+}
+
+.Red, .Yellow, .Blue, .Green, .Gray, .Orange { 
+font-weight: bold; 
+background-color: transparent;
+}
+.Red:link, .Yellow:link, .Blue:link, .Green:link, .Gray:link, .Orange:link, .White:link, .Black:link { 
+text-decoration: none;
+}
+.Red:visited, .Yellow:visited, .Blue:visited, .Green:visited, .Gray:visited, .Orange:visited, .White:visited, .Black:visited { 
+text-decoration: none;
+}
+a.Red:hover, a.Yellow:hover, a.Blue:hover, a.Green:hover, a.Gray:hover, a.Orange:hover, a.White:hover, a.Black:hover { 
+text-decoration: underline;
+}
+a.Red:active, a.Yellow:active, a.Blue:active, a.Green:active, a.Gray:active, a.Orange:active, a.White:active, a.Black:active { 
+text-decoration: underline;
+}
+
+/* Orange */
+.Orange, .Orange:link, .Orange:visited, .Orange:hover, .Orange:active { color: #FF9900; }
+/* Red */
+.Red, .Red:link, .Red:visited, .Red:hover, .Red:active { color: #EE0000; }
+/* Yellow */
+.Yellow, .Yellow:link, .Yellow:visited, .Yellow:hover, .Yellow:active { color: #DDCC00; }
+/* Blue */
+.Blue, .Blue:link, .Blue:visited, .Blue:hover, .Blue:active { color: #6666FF; }
+/* Green */
+.Green, .Green:link, .Green:visited, .Green:hover, .Green:active { color: #00A900; }
+/* Gray */
+.Gray, .Gray:link, .Gray:visited, .Gray:hover, .Gray:active { color: #999999; }
+/* White */
+.White, .White:link, .White:visited, .White:hover, .White:active { color: #000000; }
+/* Black */
+.Black, .Black:link, .Black:visited, .Black:hover, .Black:active { color: #FFFFFF; }
+
+
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	padding: 4px;
+}
+table.tablesorter thead tr .header {
+	background-image: url(bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+table.tablesorter tbody td {
+	vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+}
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #366;
+}
+
+#standing_link{
+	text-align : right;
+}
+#standing_link a {
+	font: bold 11px arial;
+	color: #fff;
+}
